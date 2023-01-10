@@ -13,7 +13,7 @@ export default function Navbar() {
           Mini<strong>Blog</strong>
         </span>
       </NavLink>
-      <ul className={styles.listLink}>
+      <ul className={`${styles.listLink} listLink`}>
         <li>
           <NavLink
             to="/"

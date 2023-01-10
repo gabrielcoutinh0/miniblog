@@ -29,11 +29,11 @@ nav button {
   color: #1b1b1b;
 }
 
-a {
+.listLink a {
   position: relative;
 }
 
-a::before {
+.listLink a::before {
   content: "";
   position: absolute;
   bottom: -2px;
@@ -46,7 +46,7 @@ a::before {
   transition: transform 0.5s ease;
 }
 
-a:hover::before {
+.listLink a:hover::before {
   transform-origin: bottom left;
   transform: scaleX(1);
 }
@@ -90,12 +90,12 @@ textarea {
   font-size: 1em;
 }
 
-.btn .btn-dark {
+.btn.btn-dark {
   background-color: #47276c;
   border-radius: 0;
 }
 
-.btn .btn-outline {
+.btn.btn-outline {
   background: transparent;
   border-radius: 0;
   color: #000;
@@ -108,11 +108,11 @@ textarea {
   color: #fff;
 }
 
-.btn .btn-outline {
+.btn.btn-outline {
   background-color: #000;
 }
 
-.btn .btn-danger:hover {
+.btn.btn-danger:hover {
   background-color: #dc3545;
 }
 
@@ -125,7 +125,7 @@ button[disabled]:hover {
   background-color: #aaa;
 }
 
-.container .error {
+.container.error {
   color: #721c24;
   background-color: #f8d7da;
   border: 1px solid #f5c6cb;

@@ -27,7 +27,7 @@ export default function Footer() {
               <h3 className={styles.title}>Pages</h3>
             </div>
             <div className={styles.widget_content}>
-              <ul>
+              <ul className="listLink">
                 <li>
                   <Link to="/">Inicio</Link>
                 </li>
