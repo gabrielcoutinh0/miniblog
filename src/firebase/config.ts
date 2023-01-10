@@ -2,13 +2,12 @@ import { getFirestore } from "firebase/firestore";
 import { initializeApp } from "firebase/app";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyCcdHpg9fggzfNRus8mB1MDzFE96i_zDfQ",
-  authDomain: "miniblog-519fe.firebaseapp.com",
-  projectId: "miniblog-519fe",
-  storageBucket: "miniblog-519fe.appspot.com",
-  messagingSenderId: "857520941763",
-  appId: "1:857520941763:web:4aefc9b66b025990da1076",
-  //PASTE YOUR FIREBASE SETTINGS HERE
+  apiKey: process.env.API_KEY,
+  authDomain: process.env.AUTH_DOMAIN,
+  projectId: process.env.PROJECT_ID,
+  storageBucket: process.env.STORAGE_BUCKET,
+  messagingSenderId: process.env.MESSAGING_SENDER_ID,
+  appId: process.env.APP_ID,
 };
 
 const app = initializeApp(firebaseConfig);
