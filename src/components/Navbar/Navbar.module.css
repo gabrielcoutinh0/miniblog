@@ -8,19 +8,10 @@
   padding: 25px;
 }
 
-.navbar a {
-  text-decoration: none;
-}
-
 .logo {
   color: #1b1b1b;
   place-self: center;
   font-size: 1.4em;
-}
-
-.logo a {
-  text-decoration: none;
-  color: #1b1b1b;
 }
 
 strong {
@@ -35,28 +26,6 @@ strong {
 
 .listLink li {
   margin-right: 20px;
-}
-
-li {
-  position: relative;
-}
-
-li::before {
-  content: "";
-  position: absolute;
-  bottom: -2px;
-  left: 0;
-  right: 0;
-  height: 2px;
-  background-color: #f7ab29;
-  transform-origin: bottom right;
-  transform: scaleX(0);
-  transition: transform 0.5s ease;
-}
-
-li:hover::before {
-  transform-origin: bottom left;
-  transform: scaleX(1);
 }
 
 .active {
