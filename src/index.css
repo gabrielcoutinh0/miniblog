@@ -116,7 +116,12 @@ textarea {
   background-color: #dc3545;
 }
 
-button[disable] {
+button[disabled] {
+  background-color: #aaa;
+  cursor: wait;
+}
+
+button[disabled]:hover {
   background-color: #aaa;
 }
 
