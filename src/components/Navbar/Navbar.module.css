@@ -1,0 +1,64 @@
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.2em 0;
+  border-radius: 5px;
+  background-color: #fff;
+  padding: 25px;
+}
+
+.navbar a {
+  text-decoration: none;
+}
+
+.logo {
+  color: #1b1b1b;
+  place-self: center;
+  font-size: 1.4em;
+}
+
+.logo a {
+  text-decoration: none;
+  color: #1b1b1b;
+}
+
+strong {
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.listLink {
+  display: flex;
+  list-style: none;
+}
+
+.listLink li {
+  margin-right: 20px;
+}
+
+li {
+  position: relative;
+}
+
+li::before {
+  content: "";
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background-color: #f7ab29;
+  transform-origin: bottom right;
+  transform: scaleX(0);
+  transition: transform 0.5s ease;
+}
+
+li:hover::before {
+  transform-origin: bottom left;
+  transform: scaleX(1);
+}
+
+.active {
+  border-bottom: 2px solid #f7ab29;
+}

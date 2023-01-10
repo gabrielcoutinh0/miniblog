@@ -1,4 +1,12 @@
 .container {
   min-height: 60vh;
-  margin-bottom: 5em;
+  max-width: 1050px;
+  margin: 1.2em auto;
+  background-color: #fff;
+}
+
+header {
+  max-width: 1050px;
+  margin: 0 auto;
+  padding: 0 15px;
 }
