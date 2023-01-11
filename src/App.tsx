@@ -6,6 +6,7 @@ import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { AuthProvider } from "./context/AuthContext";
 import { onAuthStateChanged } from "firebase/auth";
 import { useAuthentication } from "./hooks/useAuthentication";
+import { User } from "firebase/auth";
 
 //PAGES
 import Footer from "./components/Footer/Footer";
@@ -18,7 +19,7 @@ import CreatePost from "./pages/CreatePost/CreatePost";
 import Dashboard from "./pages/Dashboard/Dashboard";
 
 function App() {
-  const [user, setUser] = useState<undefined | string | any>(undefined);
+  const [user, setUser] = useState<undefined | null | User>(undefined);
   const { auth } = useAuthentication();
 
   const loadingUser = user === undefined;
@@ -27,7 +28,7 @@ function App() {
     onAuthStateChanged(auth, (user) => setUser(user));
   }, [auth]);
 
-  if (loadingUser) return <p>Carregando...</p>;
+  if (loadingUser) return <p className="loading">Carregando...</p>;
 
   return (
     <div className="App">

@@ -1,13 +1,14 @@
-import { useContext, createContext } from "react";
+import { useContext, createContext, ReactNode } from "react";
+import { User } from "firebase/auth";
 
-const AuthContext = createContext("");
+const AuthContext = createContext<User | null>(null);
 
-interface providerProps {
-  children: JSX.Element;
-  value: any;
+interface AuthProviderProps {
+  children: ReactNode;
+  value: User;
 }
 
-export function AuthProvider({ children, value }: providerProps) {
+export function AuthProvider({ children, value }: AuthProviderProps) {
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 }
 
