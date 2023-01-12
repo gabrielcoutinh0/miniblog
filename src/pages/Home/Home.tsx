@@ -5,28 +5,27 @@ import { useFetchDocuments } from "../../hooks/useFetchDocuments";
 import PostDetail from "../../components/PostDetail/PostDetail";
 import LastPosts from "../../components/LastPosts/LastPosts";
 
+import firebase from "firebase/firestore";
+
 export default function Home() {
-  const { documents: posts, loading } = useFetchDocuments("posts");
-  const { documents: lastPosts, loadingLastPost } = useFetchDocuments(
+  const { documents: posts, loading }: firebase.DocumentData =
+    useFetchDocuments("posts");
+  const { documents: lastPosts }: firebase.DocumentData = useFetchDocuments(
     "posts",
-    null,
+    "destaque",
     true,
-    6
+    5
   );
 
   return (
     <div className={styles.home}>
       <h1>Destaques</h1>
-      {loadingLastPost && <p>Carregando...</p>}
+      {loading && <p>Carregando...</p>}
       <div className={styles.lastPosts}>
         {lastPosts &&
-          lastPosts.map((post) =>
-            post.tags.includes("destaque") ? (
-              <LastPosts keyPost={post.id} post={post} />
-            ) : (
-              ""
-            )
-          )}
+          lastPosts.map((post: firebase.DocumentData) => (
+            <LastPosts keyPost={post.id} post={post} />
+          ))}
       </div>
       <div>
         {!posts && (
@@ -42,7 +41,9 @@ export default function Home() {
         {posts && <h1>Últimos Posts</h1>}
         {loading && <p>Carregando...</p>}
         {posts &&
-          posts.map((post) => <PostDetail keyPost={post.id} post={post} />)}
+          posts.map((post: firebase.DocumentData) => (
+            <PostDetail keyPost={post.id} post={post} />
+          ))}
       </div>
     </div>
   );

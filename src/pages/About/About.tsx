@@ -8,7 +8,7 @@ export default function About() {
         Sobre o Mini<strong>Blog</strong>
       </h2>
       <p>
-        Este projeto consiste em um blog feito com REact no front-end e Firebase
+        Este projeto consiste em um blog feito com React no front-end e Firebase
         no back-end.
       </p>
       <Link to="/posts/create" className="btn">

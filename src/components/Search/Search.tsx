@@ -4,12 +4,17 @@ import { useQuery } from "../../hooks/useQuery";
 import { Link } from "react-router-dom";
 import PostDetail from "../PostDetail/PostDetail";
 
+import firebase from "firebase/firestore";
+
 export default function Search() {
   const query = useQuery();
   const search = query.get("q");
   const searchLowcase = search?.toLowerCase();
 
-  const { documents: posts } = useFetchDocuments("posts", searchLowcase);
+  const { documents: posts }: firebase.DocumentData = useFetchDocuments(
+    "posts",
+    searchLowcase
+  );
 
   return (
     <div className={styles.search}>
@@ -24,7 +29,9 @@ export default function Search() {
           </>
         )}
         {posts &&
-          posts.map((post) => <PostDetail keyPost={post.id} post={post} />)}
+          posts.map((post: firebase.DocumentData) => (
+            <PostDetail keyPost={post.id} post={post} />
+          ))}
       </div>
     </div>
   );

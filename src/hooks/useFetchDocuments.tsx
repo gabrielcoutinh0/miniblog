@@ -31,16 +31,17 @@ export const useFetchDocuments = (
       try {
         let q;
 
-        if (search)
+        if (search && limitedPost)
           q = await query(
             collectionRef,
             where("tags", "array-contains", search),
-            orderBy("createdAt", "desc")
+            orderBy("createdAt", "desc"),
+            limit(qtyPosts)
           );
-        else if (uid)
+        else if (search)
           q = await query(
             collectionRef,
-            where("uid", "==", uid),
+            where("tags", "array-contains", search),
             orderBy("createdAt", "desc")
           );
         else if (limitedPost)
@@ -48,6 +49,12 @@ export const useFetchDocuments = (
             collectionRef,
             orderBy("createdAt", "desc"),
             limit(qtyPosts)
+          );
+        else if (uid)
+          q = await query(
+            collectionRef,
+            where("uid", "==", uid),
+            orderBy("createdAt", "desc")
           );
         else q = await query(collectionRef, orderBy("createdAt", "desc"));
 
@@ -68,7 +75,7 @@ export const useFetchDocuments = (
       }
     }
     loadData();
-  }, [docColletion, search, uid, cancelled]);
+  }, [docColletion, documents, search, uid, cancelled]);
 
   useEffect(() => {
     return () => setCancelled(true);
