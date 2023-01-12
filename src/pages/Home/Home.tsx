@@ -6,10 +6,12 @@ import PostDetail from "../../components/PostDetail/PostDetail";
 import LastPosts from "../../components/LastPosts/LastPosts";
 
 export default function Home() {
-  const { documents: posts, loading } = useFetchDocuments("posts", false);
+  const { documents: posts, loading } = useFetchDocuments("posts");
   const { documents: lastPosts, loadingLastPost } = useFetchDocuments(
     "posts",
-    true
+    null,
+    true,
+    6
   );
 
   return (

@@ -1,16 +1,14 @@
 import styles from "./Navbar.module.css";
-import { NavLink, Navigate } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { useAuthentication } from "../../hooks/useAuthentication";
 import { useAuthValue } from "../../context/AuthContext";
 import { useState } from "react";
-import { useFetchDocuments } from "../../hooks/useFetchDocuments";
 
 export default function Navbar() {
   const { user } = useAuthValue();
   const { logout } = useAuthentication();
 
   const [query, setQuery] = useState("");
-  const { documents: posts, loading } = useFetchDocuments("posts", false);
   const navigate = useNavigate();
 
   const handleSubmit = (e: React.FormEvent<EventTarget>) => {

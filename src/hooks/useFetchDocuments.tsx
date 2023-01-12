@@ -11,8 +11,9 @@ import {
 
 export const useFetchDocuments = (
   docColletion,
-  limited: boolean,
-  search = null,
+  search: null | string = null,
+  limitedPost: null | boolean = null,
+  qtyPosts: null | number = null,
   uid = null
 ) => {
   const [documents, setDocuments] = useState(null);
@@ -36,13 +37,17 @@ export const useFetchDocuments = (
             where("tags", "array-contains", search),
             orderBy("createdAt", "desc")
           );
-        else q = await query(collectionRef, orderBy("createdAt", "desc"));
-
-        if (limited)
+        else if (uid)
+          q = await query(
+            collectionRef,
+            where("uid", "==", uid),
+            orderBy("createdAt", "desc")
+          );
+        else if (limitedPost)
           q = await query(
             collectionRef,
             orderBy("createdAt", "desc"),
-            limit(6)
+            limit(qtyPosts)
           );
         else q = await query(collectionRef, orderBy("createdAt", "desc"));
 

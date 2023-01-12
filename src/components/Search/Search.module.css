@@ -1,0 +1,14 @@
+.search {
+  padding: 25px;
+}
+
+.search a {
+  place-self: center;
+}
+
+.posts {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  text-align: center;
+}
