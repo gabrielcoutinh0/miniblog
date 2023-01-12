@@ -26,12 +26,10 @@ export const useInsertDocument = (docCollection) => {
   const [cancelled, setCancelled] = useState(false);
 
   const checkCancelBeforeDispatch = (action) => {
-    console.log(typeof action);
     if (!cancelled) dispatch(action);
   };
 
   const insertDocument = async (document) => {
-    console.log(document);
     checkCancelBeforeDispatch({ type: "LOADING" });
 
     try {

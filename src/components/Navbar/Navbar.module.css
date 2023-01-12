@@ -31,3 +31,16 @@ strong {
 .active {
   border-bottom: 2px solid #47276c;
 }
+
+.search_form {
+  max-width: 100%;
+  width: 60%;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 2em;
+}
+
+.search_form input {
+  margin-right: 10px;
+  width: 50%;
+}

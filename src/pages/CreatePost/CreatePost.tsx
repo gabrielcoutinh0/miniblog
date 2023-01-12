@@ -11,6 +11,7 @@ export default function CreatePost() {
   const [image, setImage] = useState("");
   const [body, setBody] = useState("");
   const [tags, setTags] = useState([]);
+  const [resume, setResume] = useState("");
   const [formError, setFormError] = useState("");
 
   const { user } = useAuthValue();
@@ -39,9 +40,10 @@ export default function CreatePost() {
       title,
       image,
       body,
-      tagsArray,
+      tags: tagsArray,
       uid: user.uid,
       createdBy: user.displayName,
+      resume,
     });
 
     navigate("/");
@@ -60,6 +62,17 @@ export default function CreatePost() {
             placeholder="Título do post..."
             onChange={(e) => setTitle(e.target.value)}
             value={title}
+          />
+        </label>
+        <label>
+          <span>Resumo:</span>
+          <input
+            type="text"
+            name="resume"
+            required
+            placeholder="Título do post..."
+            onChange={(e) => setResume(e.target.value)}
+            value={resume}
           />
         </label>
         <label>
@@ -85,11 +98,15 @@ export default function CreatePost() {
         </label>
         <label>
           <span>Tags:</span>
+          <mark>
+            Coloque a tag "destaque" para aparecer nos Destaques na página
+            inicial
+          </mark>
           <input
             type="text"
             name="tags"
             required
-            placeholder="Insira as tags separadas por vírgula"
+            placeholder="Insira as tags separadas por vírgula."
             onChange={(e) => setTags(e.target.value)}
             value={tags}
           />

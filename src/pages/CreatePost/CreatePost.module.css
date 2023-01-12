@@ -11,3 +11,10 @@
   color: #aaa;
   margin-bottom: 2em;
 }
+
+mark {
+  all: unset;
+  text-align: left;
+  font-size: 0.8em;
+  color: #ccc;
+}

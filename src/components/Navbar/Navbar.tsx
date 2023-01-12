@@ -1,11 +1,25 @@
 import styles from "./Navbar.module.css";
-import { NavLink } from "react-router-dom";
+import { NavLink, Navigate } from "react-router-dom";
 import { useAuthentication } from "../../hooks/useAuthentication";
 import { useAuthValue } from "../../context/AuthContext";
+import { useState } from "react";
+import { useFetchDocuments } from "../../hooks/useFetchDocuments";
 
 export default function Navbar() {
   const { user } = useAuthValue();
   const { logout } = useAuthentication();
+
+  const [query, setQuery] = useState("");
+  const { documents: posts, loading } = useFetchDocuments("posts", false);
+  const navigate = useNavigate();
+
+  const handleSubmit = (e: React.FormEvent<EventTarget>) => {
+    e.preventDefault();
+
+    if (query) {
+      return navigate(`/search?q=${query}`);
+    }
+  };
 
   return (
     <nav className={styles.navbar}>
@@ -14,6 +28,14 @@ export default function Navbar() {
           Mini<strong>Blog</strong>
         </span>
       </NavLink>
+      <form onSubmit={handleSubmit}>
+        <input
+          type="text"
+          placeholder="Digite sua busca..."
+          onChange={(e) => setQuery(e.target.value)}
+        />
+        <button className="btn btn-dark">Pesquisar</button>
+      </form>
       <ul className={`${styles.listLink} listLink`}>
         <li>
           <NavLink
