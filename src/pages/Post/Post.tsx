@@ -7,13 +7,14 @@ import firebase from "firebase/firestore";
 
 export default function Post() {
   const { id } = useParams();
-  const { document: post }: firebase.DocumentData = useFetchDocument(
+  const { document: post, loading }: firebase.DocumentData = useFetchDocument(
     "posts",
     id
   );
 
   return (
     <div className={styles.Post}>
+      {loading && <p>Carregando post...</p>}
       {post && (
         <main className={styles.layoutPost}>
           <h1>{post.title}</h1>

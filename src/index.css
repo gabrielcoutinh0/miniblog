@@ -77,6 +77,11 @@ textarea {
   background-color: transparent;
 }
 
+textarea {
+  width: 100%;
+  resize: vertical;
+}
+
 .btn {
   background-color: #1a8918;
   color: #fff;

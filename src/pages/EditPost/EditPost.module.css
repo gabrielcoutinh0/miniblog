@@ -1,0 +1,29 @@
+.edit_post {
+  text-align: center;
+  padding: 25px;
+}
+
+.edit_post h2 {
+  font-size: 2.2em;
+}
+
+.edit_post p {
+  color: #aaa;
+  margin-bottom: 2em;
+}
+
+mark {
+  all: unset;
+  text-align: left;
+  font-size: 0.8em;
+  color: #ccc;
+}
+
+textarea {
+  height: 250px;
+}
+
+.image_preview {
+  max-width: 100%;
+  margin-bottom: 1em;
+}
