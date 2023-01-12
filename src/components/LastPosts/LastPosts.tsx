@@ -19,7 +19,13 @@ export default function LastPosts({
       <div className={styles.postDetails}>
         <div className={styles.tags}>
           {post.tags.map((tag: string) =>
-            tag.includes("destaque") ? "" : <span key={tag}>{tag}</span>
+            tag.includes("destaque") ? (
+              ""
+            ) : (
+              <span key={tag}>
+                <Link to={`/tag/${tag}`}>{tag}</Link>
+              </span>
+            )
           )}
         </div>
         <h3 className={styles.postTitle}>

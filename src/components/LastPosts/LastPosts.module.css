@@ -91,6 +91,10 @@
   border-radius: 4px;
 }
 
+.tags span a {
+  color: #fff;
+}
+
 .postTitle {
   font-size: 1.1em;
   font-weight: 600;
