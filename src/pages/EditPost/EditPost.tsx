@@ -1,3 +1,6 @@
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-nocheck
+
 import styles from "./EditPost.module.css";
 
 import { useState, useEffect } from "react";

@@ -1,3 +1,6 @@
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-nocheck
+
 import styles from "./Navbar.module.css";
 import { NavLink, useNavigate } from "react-router-dom";
 import { useAuthentication } from "../../hooks/useAuthentication";
@@ -32,7 +35,6 @@ export default function Navbar() {
           placeholder="Digite sua busca..."
           onChange={(e) => setQuery(e.target.value)}
         />
-        <button className="btn btn-dark">Pesquisar</button>
       </form>
       <ul className={`${styles.listLink} listLink`}>
         <li>

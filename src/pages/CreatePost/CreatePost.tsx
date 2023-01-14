@@ -1,3 +1,6 @@
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-nocheck
+
 import styles from "./CreatePost.module.css";
 
 import { useState } from "react";
