@@ -132,6 +132,11 @@
   color: #999;
 }
 
+.noImage {
+  width: 100% !important;
+  object-fit: contain !important;
+}
+
 @media (min-width: 1024px) {
   .lastPost_item {
     display: block;

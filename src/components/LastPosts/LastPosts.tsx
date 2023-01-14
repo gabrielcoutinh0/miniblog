@@ -1,4 +1,6 @@
 import styles from "./LastPosts.module.css";
+import noImage from "../../assets/no-image.svg";
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import { timeConverter } from "../../utils/TimeConverter";
 
@@ -9,11 +11,21 @@ export default function LastPosts({
   keyPost: string;
   post: any;
 }) {
+  const [imageError, setImageError] = useState(false);
+
   return (
     <div key={keyPost} className={styles.lastPost_item}>
       <div className={styles.postImage}>
         <Link to={`/posts/${post.id}`}>
-          <img src={post.image} alt={post.title} />
+          {imageError ? (
+            <img src={noImage} alt={post.title} className={styles.noImage} />
+          ) : (
+            <img
+              src={post.image}
+              alt={post.title}
+              onError={() => setImageError(true)}
+            />
+          )}
         </Link>
       </div>
       <div className={styles.postDetails}>

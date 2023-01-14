@@ -1,5 +1,7 @@
 import styles from "./PostDetail.module.css";
+import noImage from "../../assets/no-image.svg";
 import UserProfile from "../../assets/user-profile.svg";
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import { timeConverter } from "../../utils/TimeConverter";
 
@@ -10,11 +12,21 @@ export default function PostDetail({
   keyPost: string;
   post: any;
 }) {
+  const [imageError, setImageError] = useState(false);
+
   return (
     <article key={keyPost} className={styles.post}>
       <div className={styles.postImage}>
         <Link to={`/posts/${post.id}`}>
-          <img src={post.image} alt={post.title} />
+          {imageError ? (
+            <img src={noImage} alt={post.title} className={styles.noImage} />
+          ) : (
+            <img
+              src={post.image}
+              alt={post.title}
+              onError={() => setImageError(true)}
+            />
+          )}
         </Link>
       </div>
       <div className={styles.postDetails}>

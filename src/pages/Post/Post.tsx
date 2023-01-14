@@ -1,5 +1,7 @@
 import styles from "./Post.module.css";
 import UserProfile from "../../assets/user-profile.svg";
+import noImage from "../../assets/no-image.svg";
+import { useState } from "react";
 import { useParams, Link } from "react-router-dom";
 import { useFetchDocument } from "../../hooks/useFetchDocument";
 import { timeConverter } from "../../utils/TimeConverter";
@@ -11,6 +13,8 @@ export default function Post() {
     "posts",
     id
   );
+
+  const [imageError, setImageError] = useState(false);
 
   return (
     <div className={styles.Post}>
@@ -43,7 +47,15 @@ export default function Post() {
               )}
             </div>
           </div>
-          <img src={post.image} alt={post.title} />
+          {imageError ? (
+            <img src={noImage} alt={post.title} className={styles.noImage} />
+          ) : (
+            <img
+              src={post.image}
+              alt={post.title}
+              onError={() => setImageError(true)}
+            />
+          )}
           <p>{post.body}</p>
         </main>
       )}

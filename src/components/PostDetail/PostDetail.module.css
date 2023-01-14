@@ -89,6 +89,11 @@
   align-items: flex-start;
 }
 
+.noImage {
+  width: 100% !important;
+  object-fit: contain !important;
+}
+
 @media (min-width: 1024px) {
   .post {
     grid-template-columns: 240px 1fr;
