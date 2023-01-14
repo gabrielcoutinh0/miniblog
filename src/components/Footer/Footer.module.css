@@ -15,7 +15,7 @@
 .footer_colums {
   display: grid;
   align-items: start;
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: 1fr;
   background-color: #fff;
   border-radius: 5px;
 }
@@ -28,7 +28,7 @@
 
 .widget {
   overflow: hidden;
-  padding: 25px;
+  padding: 12.5px;
   position: relative;
 
   display: grid;
@@ -81,4 +81,10 @@ ul {
 
 .center {
   text-align: center;
+}
+
+@media (min-width: 1024px) {
+  .footer_colums {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
 }

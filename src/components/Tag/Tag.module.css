@@ -1,5 +1,10 @@
 .tag {
-  padding: 25px;
+  padding: 12.5px;
+}
+
+.tag h2:first-child {
+  margin-top: 0;
+  padding: 12.5px;
 }
 
 .posts {

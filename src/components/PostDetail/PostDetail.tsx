@@ -47,7 +47,7 @@ export default function PostDetail({
           </div>
           <span>
             <Link to={`/posts/${post.id}`} className="btn btn-outline">
-              Continue lendo
+              Leia mais
             </Link>
           </span>
         </div>

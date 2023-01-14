@@ -27,18 +27,16 @@ export default function Home() {
             <LastPosts keyPost={post.id} post={post} />
           ))}
       </div>
-      <div>
-        {!posts && (
-          <div className={styles.noposts}>
-            <p>Não foram encontrados posts</p>
-            <Link to="/posts/create" className="btn">
-              Criar primeiro post
-            </Link>
-          </div>
-        )}
-      </div>
+      {!posts && (
+        <div className={styles.noposts}>
+          <p>Não foram encontrados posts</p>
+          <Link to="/posts/create" className="btn">
+            Criar primeiro post
+          </Link>
+        </div>
+      )}
+      {posts && <h1>Últimos Posts</h1>}
       <div className={styles.posts}>
-        {posts && <h1>Últimos Posts</h1>}
         {loading && <p>Carregando...</p>}
         {posts &&
           posts.map((post: firebase.DocumentData) => (

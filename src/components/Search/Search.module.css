@@ -1,5 +1,10 @@
 .search {
-  padding: 25px;
+  padding: 12.5px;
+}
+
+.search h2:first-child {
+  margin-top: 0;
+  padding: 12.5px;
 }
 
 .posts {
