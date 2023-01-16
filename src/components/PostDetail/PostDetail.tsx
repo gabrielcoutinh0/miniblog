@@ -5,17 +5,11 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import { timeConverter } from "../../utils/TimeConverter";
 
-export default function PostDetail({
-  keyPost,
-  post,
-}: {
-  keyPost: string;
-  post: any;
-}) {
+export default function PostDetail({ post }: { post: any }) {
   const [imageError, setImageError] = useState(false);
 
   return (
-    <article key={keyPost} className={styles.post}>
+    <article className={styles.post}>
       <div className={styles.postImage}>
         <Link to={`/posts/${post.id}`}>
           {imageError ? (

@@ -23,6 +23,7 @@ export const useFetchDocuments = (
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState<boolean | null>(null);
   const [cancelled, setCancelled] = useState(false);
+  const [shouldRefetch, refetch] = useState({});
 
   useEffect(() => {
     async function loadData() {
@@ -78,11 +79,15 @@ export const useFetchDocuments = (
       }
     }
     loadData();
-  }, [docColletion, search, uid, cancelled]);
+  }, [
+    docColletion,
+    search,
+    limitedPost,
+    qtyPosts,
+    uid,
+    cancelled,
+    shouldRefetch,
+  ]);
 
-  useEffect(() => {
-    return () => setCancelled(true);
-  }, []);
-
-  return { documents, loading, error };
+  return { documents, loading, error, refetch };
 };

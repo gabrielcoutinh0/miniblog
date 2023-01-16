@@ -3,13 +3,16 @@ import { useFetchDocuments } from "../../hooks/useFetchDocuments";
 import { useParams, Link } from "react-router-dom";
 import PostDetail from "../PostDetail/PostDetail";
 import firebase from "firebase/firestore";
+import { useEffect } from "react";
 
 export default function Tag() {
   const { id } = useParams();
-  const { documents: posts }: firebase.DocumentData = useFetchDocuments(
-    "posts",
-    id
-  );
+  const { documents: posts, refetch }: firebase.DocumentData =
+    useFetchDocuments("posts", id);
+
+  useEffect(() => {
+    refetch;
+  }, [id]);
 
   return (
     <div className={styles.tag}>
@@ -24,8 +27,8 @@ export default function Tag() {
           </>
         )}
         {posts &&
-          posts.map((post: firebase.DocumentData) => (
-            <PostDetail keyPost={post.id} post={post} />
+          posts.map((post: firebase.DocumentData, key: string) => (
+            <PostDetail key={key} post={post} />
           ))}
       </div>
     </div>

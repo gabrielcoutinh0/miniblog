@@ -23,9 +23,51 @@ export default function EditPost() {
   const [title, setTitle] = useState("");
   const [image, setImage] = useState("");
   const [body, setBody] = useState("");
-  const [tags, setTags] = useState([]);
+  const [inputTag, setInputTag] = useState("");
+  const [tags, setTags] = useState<string[]>([]);
   const [resume, setResume] = useState("");
   const [formError, setFormError] = useState("");
+  const [isKeyReleased, setIsKeyReleased] = useState(false);
+
+  const onKeyDown = (e: React.KeyboardEvent<object>) => {
+    const { key } = e;
+    const trimmedInput = inputTag.trim();
+
+    if (key === "," && trimmedInput.length && !tags.includes(trimmedInput)) {
+      e.preventDefault();
+      setTags((prevState) => [...prevState, trimmedInput]);
+      setInputTag("");
+    }
+
+    if (key === "," && tags.includes(trimmedInput)) {
+      e.preventDefault();
+      setInputTag("");
+    }
+
+    if (
+      key === "Backspace" &&
+      !inputTag.length &&
+      tags.length &&
+      isKeyReleased
+    ) {
+      e.preventDefault();
+      const tagsCopy = [...tags];
+      const poppedTag = tagsCopy.pop();
+
+      setTags(tagsCopy);
+      setInputTag(poppedTag);
+    }
+
+    setIsKeyReleased(false);
+  };
+
+  const onKeyUp = () => {
+    setIsKeyReleased(true);
+  };
+
+  const deleteTag = (index: number) => {
+    setTags((prevState) => prevState.filter((tag, i) => i !== index));
+  };
 
   useEffect(() => {
     if (post) {
@@ -33,9 +75,7 @@ export default function EditPost() {
       setResume(post.resume);
       setBody(post.body);
       setImage(post.image);
-
-      const textTags = post.tags.join(", ");
-      setTags(textTags);
+      setTags(post.tags);
     }
   }, [post]);
 
@@ -54,9 +94,7 @@ export default function EditPost() {
       setFormError("A imagem precisa ser uma URL");
     }
 
-    const tagsArray = tags
-      .split(",")
-      .map((tag: string) => tag.trim().toLowerCase());
+    const tagsArray = tags.map((tag: string) => tag.toLowerCase());
 
     if (!title || !image || !tags || !body)
       setFormError("Por favor, preencha todos os campos!");
@@ -77,6 +115,7 @@ export default function EditPost() {
 
     navigate("/dashboard");
   };
+
   return (
     <div className={styles.edit_post}>
       {post && (
@@ -139,16 +178,34 @@ export default function EditPost() {
                 Coloque a tag "destaque" para aparecer nos Destaques na página
                 inicial
               </mark>
+              <div className={styles.tags}>
+                {tags.map((tag, index) => (
+                  <div
+                    key={index}
+                    className={styles.tag}
+                    onClick={() => deleteTag(index)}
+                  >
+                    {tag}
+                    <span>x</span>
+                  </div>
+                ))}
+              </div>
               <input
                 type="text"
                 name="tags"
-                required
+                id="inputTags"
                 placeholder="Insira as tags separadas por vírgula."
-                onChange={(e) => setTags(e.target.value)}
-                value={tags}
+                onKeyDown={onKeyDown}
+                onKeyUp={onKeyUp}
+                onChange={(e) => setInputTag(e.target.value)}
+                value={inputTag}
               />
             </label>
-            {!response.loading && <button className="btn">Editar</button>}
+            {!response.loading && (
+              <button type="submit" value="submit" className="btn">
+                Editar
+              </button>
+            )}
             {response.loading && (
               <button className="btn" disabled>
                 Aguarde...

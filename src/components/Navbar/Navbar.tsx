@@ -1,7 +1,5 @@
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-// @ts-nocheck
-
 import styles from "./Navbar.module.css";
+import searchIcon from "../../assets/search.svg";
 import { NavLink, useNavigate } from "react-router-dom";
 import { useAuthentication } from "../../hooks/useAuthentication";
 import { useAuthValue } from "../../context/AuthContext";
@@ -12,10 +10,12 @@ export default function Navbar() {
   const { logout } = useAuthentication();
 
   const [query, setQuery] = useState("");
+  const [active, setActive] = useState(false);
   const navigate = useNavigate();
 
   const handleSubmit = (e: React.FormEvent<EventTarget>) => {
     e.preventDefault();
+    setQuery("");
 
     if (query) {
       return navigate(`/search?q=${query}`);
@@ -29,12 +29,22 @@ export default function Navbar() {
           Mini<strong>Blog</strong>
         </span>
       </NavLink>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} className={styles.search}>
         <input
+          className={
+            active
+              ? `${styles.input_search} ${styles.active}`
+              : `${styles.input_search}`
+          }
           type="text"
           placeholder="Digite sua busca..."
           onChange={(e) => setQuery(e.target.value)}
+          value={query}
+          onBlur={() => setActive(!active)}
         />
+        <span onClick={() => setActive(!active)} className={styles.btn_search}>
+          <img src={searchIcon} alt="Buscar" />
+        </span>
       </form>
       <ul className={`${styles.listLink} listLink`}>
         <li>

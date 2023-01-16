@@ -23,8 +23,8 @@ export default function Home() {
       {loading && <p>Carregando...</p>}
       <div className={styles.lastPosts}>
         {lastPosts &&
-          lastPosts.map((post: firebase.DocumentData) => (
-            <LastPosts keyPost={post.id} post={post} />
+          lastPosts.map((post: firebase.DocumentData, key: string) => (
+            <LastPosts key={key} post={post} />
           ))}
       </div>
       {!posts && (
@@ -39,8 +39,8 @@ export default function Home() {
       <div className={styles.posts}>
         {loading && <p>Carregando...</p>}
         {posts &&
-          posts.map((post: firebase.DocumentData) => (
-            <PostDetail keyPost={post.id} post={post} />
+          posts.map((post: firebase.DocumentData, key: string) => (
+            <PostDetail key={key} post={post} />
           ))}
       </div>
     </div>

@@ -27,3 +27,26 @@ textarea {
   max-width: 100%;
   margin-bottom: 1em;
 }
+
+.tags {
+  display: flex;
+}
+
+.tag {
+  display: flex;
+  align-items: center;
+  margin: 7px 0;
+  margin-right: 10px;
+  padding: 10px;
+  border-radius: 5px;
+  background-color: #47276c;
+  white-space: nowrap;
+  color: white;
+}
+
+.tag span {
+  all: unset;
+  padding-left: 8px;
+  cursor: pointer;
+  color: white;
+}

@@ -5,20 +5,20 @@ import { Link } from "react-router-dom";
 import PostDetail from "../PostDetail/PostDetail";
 
 import firebase from "firebase/firestore";
+import { useEffect } from "react";
 
 export default function Search() {
   const query = useQuery();
   const search = query.get("q");
-  const searchLowcase = search?.toLowerCase();
 
   const { documents: posts }: firebase.DocumentData = useFetchDocuments(
     "posts",
-    searchLowcase
+    search
   );
 
   return (
     <div className={styles.search}>
-      <h2>Resultado da busca para: {searchLowcase}</h2>
+      <h2>Resultado da busca para: {search?.toUpperCase()}</h2>
       <div className={styles.posts}>
         {posts && posts.length === 0 && (
           <>
@@ -29,8 +29,8 @@ export default function Search() {
           </>
         )}
         {posts &&
-          posts.map((post: firebase.DocumentData) => (
-            <PostDetail keyPost={post.id} post={post} />
+          posts.map((post: firebase.DocumentData, key: string) => (
+            <PostDetail key={key} post={post} />
           ))}
       </div>
     </div>
