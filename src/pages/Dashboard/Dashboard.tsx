@@ -13,7 +13,7 @@ export default function Dashboard() {
   const uid = user.uid;
 
   const { documents: posts, loading }: firebase.DocumentData =
-    useFetchDocuments("posts", null, null, null, uid);
+    useFetchDocuments("posts", null, null, null, null, uid);
 
   const { deleteDocument } = useDeleteDocument("posts");
 

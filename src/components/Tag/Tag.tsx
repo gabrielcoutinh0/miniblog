@@ -7,12 +7,10 @@ import { useEffect } from "react";
 
 export default function Tag() {
   const { id } = useParams();
-  const { documents: posts, refetch }: firebase.DocumentData =
-    useFetchDocuments("posts", id);
-
-  useEffect(() => {
-    refetch;
-  }, [id]);
+  const { documents: posts }: firebase.DocumentData = useFetchDocuments(
+    "posts",
+    id
+  );
 
   return (
     <div className={styles.tag}>

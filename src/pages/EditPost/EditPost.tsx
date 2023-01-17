@@ -20,6 +20,7 @@ export default function EditPost() {
     id
   );
 
+  const [keywords, setKeywords] = useState([]);
   const [title, setTitle] = useState("");
   const [image, setImage] = useState("");
   const [body, setBody] = useState("");
@@ -76,8 +77,23 @@ export default function EditPost() {
     setTags((prevState) => prevState.filter((tag, i) => i !== index));
   };
 
+  const createKeywords = (title) => {
+    const curTitle = title.split(" ");
+    const arrTitle = [];
+    for (let i = 0; i < curTitle.length; i++) {
+      for (let j = 1; j <= curTitle.length; j++) {
+        const slice = curTitle.slice(i, j);
+        if (slice.length) arrTitle.push(slice.join(" "));
+      }
+    }
+
+    return arrTitle;
+  };
+
   useEffect(() => {
     if (post) {
+      const titleLowCase = post.title.toLowerCase();
+      setKeywords(createKeywords(titleLowCase));
       setTitle(post.title);
       setResume(post.resume);
       setBody(post.body);
@@ -107,6 +123,7 @@ export default function EditPost() {
     if (formError) return;
 
     const data = {
+      keywords,
       title,
       image,
       body,

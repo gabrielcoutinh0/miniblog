@@ -19,9 +19,10 @@ export default function Navbar() {
   const handleSubmit = (e: React.FormEvent<EventTarget>) => {
     e.preventDefault();
     setQuery("");
+    const queryLowcase = query.toLowerCase();
 
-    if (query) {
-      return navigate(`/search?q=${query}`);
+    if (queryLowcase) {
+      return navigate(`/search?q=${queryLowcase}`);
     }
   };
 

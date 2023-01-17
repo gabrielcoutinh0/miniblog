@@ -13,6 +13,7 @@ export default function Home() {
   const { documents: lastPosts }: firebase.DocumentData = useFetchDocuments(
     "posts",
     "destaque",
+    null,
     true,
     5
   );

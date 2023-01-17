@@ -1,6 +1,3 @@
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-// @ts-nocheck
-
 import { useState, useEffect } from "react";
 import { db } from "../firebase/config";
 import {
@@ -14,6 +11,7 @@ import {
 
 export const useFetchDocuments = (
   docColletion,
+  tags: null | string = null,
   search: null | string = null,
   limitedPost: null | boolean = null,
   qtyPosts: null | number = null,
@@ -22,30 +20,31 @@ export const useFetchDocuments = (
   const [documents, setDocuments] = useState(null);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState<boolean | null>(null);
-  const [cancelled, setCancelled] = useState(false);
-  const [shouldRefetch, refetch] = useState({});
 
   useEffect(() => {
     async function loadData() {
-      if (cancelled) return;
-      setLoading(true);
-
       const collectionRef = await collection(db, docColletion);
 
       try {
         let q;
 
-        if (search && limitedPost)
+        if (tags && limitedPost)
           q = await query(
             collectionRef,
-            where("tags", "array-contains", search),
+            where("tags", "array-contains", tags),
             orderBy("createdAt", "desc"),
             limit(qtyPosts)
+          );
+        else if (tags)
+          q = await query(
+            collectionRef,
+            where("tags", "array-contains", tags),
+            orderBy("createdAt", "desc")
           );
         else if (search)
           q = await query(
             collectionRef,
-            where("tags", "array-contains", search),
+            where("keywords", "array-contains", search),
             orderBy("createdAt", "desc")
           );
         else if (limitedPost)
@@ -79,15 +78,7 @@ export const useFetchDocuments = (
       }
     }
     loadData();
-  }, [
-    docColletion,
-    search,
-    limitedPost,
-    qtyPosts,
-    uid,
-    cancelled,
-    shouldRefetch,
-  ]);
+  }, [docColletion, tags, search, limitedPost, qtyPosts, uid]);
 
-  return { documents, loading, error, refetch };
+  return { documents, loading, error };
 };

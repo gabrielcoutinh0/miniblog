@@ -3,13 +3,14 @@
 
 import styles from "./CreatePost.module.css";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 import { useAuthValue } from "../../context/AuthContext";
 import { useInsertDocument } from "../../hooks/useInsertDocument";
 
 export default function CreatePost() {
+  const [keywords, setKeywords] = useState([]);
   const [title, setTitle] = useState("");
   const [image, setImage] = useState("");
   const [body, setBody] = useState("");
@@ -71,6 +72,24 @@ export default function CreatePost() {
     setTags((prevState) => prevState.filter((tag, i) => i !== index));
   };
 
+  const createKeywords = (title) => {
+    const curTitle = title.split(" ");
+    const arrTitle = [];
+    for (let i = 0; i < curTitle.length; i++) {
+      for (let j = 1; j <= curTitle.length; j++) {
+        const slice = curTitle.slice(i, j);
+        if (slice.length) arrTitle.push(slice.join(" "));
+      }
+    }
+
+    return arrTitle;
+  };
+
+  useEffect(() => {
+    const titleLowCase = title.toLowerCase();
+    setKeywords(createKeywords(titleLowCase));
+  }, [title]);
+
   const handleSubmit = (e: React.FormEvent<EventTarget>) => {
     e.preventDefault();
     setFormError("");
@@ -87,6 +106,7 @@ export default function CreatePost() {
     if (formError) return;
 
     insertDocument({
+      keywords,
       title,
       image,
       body,
@@ -155,9 +175,13 @@ export default function CreatePost() {
           </mark>
           <div className={styles.tags}>
             {tags.map((tag, index) => (
-              <div key={index} className={styles.tag}>
+              <div
+                key={index}
+                className={styles.tag}
+                onClick={() => deleteTag(index)}
+              >
                 {tag}
-                <button onClick={() => deleteTag(index)}>x</button>
+                <span>x</span>
               </div>
             ))}
           </div>

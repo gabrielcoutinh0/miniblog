@@ -13,6 +13,7 @@ export default function Search() {
 
   const { documents: posts }: firebase.DocumentData = useFetchDocuments(
     "posts",
+    null,
     search
   );
 
