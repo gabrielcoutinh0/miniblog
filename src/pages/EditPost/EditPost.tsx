@@ -31,15 +31,22 @@ export default function EditPost() {
 
   const onKeyDown = (e: React.KeyboardEvent<object>) => {
     const { key } = e;
-    const trimmedInput = inputTag.trim();
+    const trimmedInput = inputTag.trim().toLowerCase().replace(/\,/g, "");
 
-    if (key === "," && trimmedInput.length && !tags.includes(trimmedInput)) {
+    if (
+      (e.target.value.endsWith(",") || key === ",") &&
+      trimmedInput.length &&
+      !tags.includes(trimmedInput)
+    ) {
       e.preventDefault();
       setTags((prevState) => [...prevState, trimmedInput]);
       setInputTag("");
     }
 
-    if (key === "," && tags.includes(trimmedInput)) {
+    if (
+      (e.target.value.endsWith(",") || key === ",") &&
+      tags.includes(trimmedInput)
+    ) {
       e.preventDefault();
       setInputTag("");
     }
@@ -94,8 +101,6 @@ export default function EditPost() {
       setFormError("A imagem precisa ser uma URL");
     }
 
-    const tagsArray = tags.map((tag: string) => tag.toLowerCase());
-
     if (!title || !image || !tags || !body)
       setFormError("Por favor, preencha todos os campos!");
 
@@ -105,7 +110,7 @@ export default function EditPost() {
       title,
       image,
       body,
-      tags: tagsArray,
+      tags,
       uid: user.uid,
       createdBy: user.displayName,
       resume,

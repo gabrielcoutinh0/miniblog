@@ -30,6 +30,7 @@ textarea {
 
 .tags {
   display: flex;
+  flex-wrap: wrap;
 }
 
 .tag {

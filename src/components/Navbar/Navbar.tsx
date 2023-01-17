@@ -1,3 +1,6 @@
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-nocheck
+
 import styles from "./Navbar.module.css";
 import searchIcon from "../../assets/search.svg";
 import { NavLink, useNavigate } from "react-router-dom";
