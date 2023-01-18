@@ -121,6 +121,10 @@ textarea {
   color: #fff;
 }
 
+.btn.btn-dark:hover {
+  background-color: #603492;
+}
+
 .btn.btn-outline:hover {
   background-color: #000;
 }

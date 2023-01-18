@@ -30,27 +30,21 @@ export default function EditPost() {
   const [formError, setFormError] = useState("");
   const [isKeyReleased, setIsKeyReleased] = useState(false);
 
-  const onKeyDown = (e: React.KeyboardEvent<object>) => {
-    const { key } = e;
-    const trimmedInput = inputTag.trim().toLowerCase().replace(/\,/g, "");
+  const handdleAddTag = (tag) => {
+    const trimmedInput = tag.trim().toLowerCase();
 
-    if (
-      (e.target.value.endsWith(",") || key === ",") &&
-      trimmedInput.length &&
-      !tags.includes(trimmedInput)
-    ) {
-      e.preventDefault();
+    if (!tags.includes(trimmedInput)) {
       setTags((prevState) => [...prevState, trimmedInput]);
       setInputTag("");
     }
 
-    if (
-      (e.target.value.endsWith(",") || key === ",") &&
-      tags.includes(trimmedInput)
-    ) {
-      e.preventDefault();
+    if (tags.includes(trimmedInput)) {
       setInputTag("");
     }
+  };
+
+  const onKeyDown = (e: React.KeyboardEvent<object>) => {
+    const { key } = e;
 
     if (
       key === "Backspace" &&
@@ -212,27 +206,35 @@ export default function EditPost() {
                   </div>
                 ))}
               </div>
-              <input
-                type="text"
-                name="tags"
-                id="inputTags"
-                placeholder="Insira as tags separadas por vírgula."
-                onKeyDown={onKeyDown}
-                onKeyUp={onKeyUp}
-                onChange={(e) => setInputTag(e.target.value)}
-                value={inputTag}
-              />
+              <div className={styles.addTag}>
+                <input
+                  type="text"
+                  name="tags"
+                  id="inputTags"
+                  placeholder="Insira as tags separadas."
+                  onKeyDown={onKeyDown}
+                  onKeyUp={onKeyUp}
+                  onChange={(e) => setInputTag(e.target.value)}
+                  value={inputTag}
+                />
+                <span
+                  onClick={() => handdleAddTag(inputTag)}
+                  className="btn btn-dark"
+                >
+                  + Add Tag
+                </span>
+              </div>
             </label>
-            {!response.loading && (
+            {response.loading ? (
+              <button className="btn" disabled>
+                Aguarde...
+              </button>
+            ) : (
               <button type="submit" value="submit" className="btn">
                 Editar
               </button>
             )}
-            {response.loading && (
-              <button className="btn" disabled>
-                Aguarde...
-              </button>
-            )}
+
             {(response.error || formError) && (
               <p className="error">{response.error || formError}</p>
             )}

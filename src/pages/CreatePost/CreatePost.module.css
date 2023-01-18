@@ -22,6 +22,7 @@ mark {
 .tags {
   display: flex;
   flex-wrap: wrap;
+  padding-bottom: 12px;
 }
 
 .tag {
@@ -34,6 +35,7 @@ mark {
   background-color: #47276c;
   white-space: nowrap;
   color: white;
+  cursor: pointer;
 }
 
 .tag span {
@@ -41,4 +43,26 @@ mark {
   padding-left: 8px;
   cursor: pointer;
   color: white;
+}
+
+.tag:hover {
+  background-color: #603492;
+}
+
+.addTag {
+  display: flex;
+  flex-direction: row;
+}
+
+.addTag input {
+  width: 100%;
+}
+
+.addTag input:focus {
+  outline: none;
+}
+
+.addTag span {
+  margin: 0;
+  border-radius: 10px !important;
 }
