@@ -25,6 +25,10 @@
   gap: 20px;
 }
 
+.lastPosts {
+  height: max-content;
+}
+
 .col {
   display: grid;
   grid-template-columns: 1fr;
@@ -32,7 +36,13 @@
 }
 
 .aside {
-  height: 60vh;
+  height: max-content;
+}
+
+.offers {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
 }
 
 @media (min-width: 1024px) {

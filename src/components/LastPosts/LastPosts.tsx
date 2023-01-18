@@ -4,8 +4,9 @@ import UserProfile from "../../assets/user-profile.svg";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { timeConverter } from "../../utils/TimeConverter";
+import { DocumentData } from "firebase/firestore";
 
-export default function LastPosts({ post }: { post: any }) {
+export default function LastPosts({ post }: DocumentData) {
   const [imageError, setImageError] = useState(false);
 
   return (

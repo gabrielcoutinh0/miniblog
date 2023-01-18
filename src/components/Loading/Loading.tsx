@@ -6,6 +6,7 @@ export default function Loading() {
       <div className={styles.loading}>
         <div></div>
         <div></div>
+        <span>Carregando...</span>
       </div>
     </div>
   );

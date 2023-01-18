@@ -3,8 +3,9 @@ import noImage from "../../assets/no-image.svg";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { timeConverter } from "../../utils/TimeConverter";
+import { DocumentData } from "firebase/firestore";
 
-export default function HighlightsPosts({ post }: { post: any }) {
+export default function HighlightsPosts({ post }: DocumentData) {
   const [imageError, setImageError] = useState(false);
 
   return (

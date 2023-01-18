@@ -1,3 +1,6 @@
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-nocheck
+
 import styles from "./Home.module.css";
 
 import { Link } from "react-router-dom";
@@ -7,12 +10,20 @@ import HighlightsPosts from "../../components/HighlightsPosts/HighlightsPosts";
 
 import firebase from "firebase/firestore";
 import Loading from "../../components/Loading/Loading";
+import { useFetch } from "../../hooks/useFetch";
+import Product from "../../components/Product/Product";
+import { ProductProps } from "../../services/types";
 
 export default function Home() {
   const { documents: lastPosts, loading }: firebase.DocumentData =
     useFetchDocuments("posts");
   const { documents: highlightsPosts }: firebase.DocumentData =
     useFetchDocuments("posts", "destaque", null, true, 5);
+
+  const url =
+    "https://pudim2.economizzando.com.br/conteudo/api/vitrine/desconto-em-games/?page=1";
+
+  const { data: products, loading: loadingProduts } = useFetch(url);
 
   return (
     <>
@@ -46,7 +57,40 @@ export default function Home() {
               ))}
           </div>
         </main>
-        <aside className={`content ${styles.aside}`}></aside>
+        <aside className={`content ${styles.aside}`}>
+          <h1 className={styles.title}>Ofertas</h1>
+          {loadingProduts ? (
+            <Loading />
+          ) : (
+            <div className={styles.offers}>
+              {products &&
+                products.posts.map(
+                  ({
+                    id,
+                    loja,
+                    produto,
+                    preco,
+                    link,
+                    imagem,
+                    obs,
+                    categoria,
+                  }: ProductProps) => (
+                    <Product
+                      key={id}
+                      id={id}
+                      loja={loja}
+                      produto={produto}
+                      preco={preco}
+                      link={link}
+                      imagem={imagem}
+                      obs={obs}
+                      categoria={categoria.toUpperCase()}
+                    />
+                  )
+                )}
+            </div>
+          )}
+        </aside>
       </div>
     </>
   );
