@@ -120,7 +120,7 @@ export default function CreatePost() {
   };
 
   return (
-    <div className={styles.create_post}>
+    <div className={`content ${styles.create_post}`}>
       <h2>Criar post</h2>
       <p>Escreva sobre o que quiser e compartilhe o seu conhecimento!</p>
       <form onSubmit={handleSubmit}>
@@ -196,12 +196,14 @@ export default function CreatePost() {
             value={inputTag}
           />
         </label>
-        {!response.loading && <button className="btn">Criar post!</button>}
-        {response.loading && (
+        {response.loading ? (
           <button className="btn" disabled>
             Aguarde...
           </button>
+        ) : (
+          <button className="btn">Criar post!</button>
         )}
+
         {(response.error || formError) && (
           <p className="error">{response.error || formError}</p>
         )}

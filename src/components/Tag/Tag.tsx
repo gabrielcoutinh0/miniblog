@@ -1,7 +1,7 @@
 import styles from "./Tag.module.css";
 import { useFetchDocuments } from "../../hooks/useFetchDocuments";
 import { useParams, Link } from "react-router-dom";
-import PostDetail from "../PostDetail/PostDetail";
+import PostDetail from "../LastPosts/LastPosts";
 import firebase from "firebase/firestore";
 import { useEffect } from "react";
 
@@ -13,7 +13,7 @@ export default function Tag() {
   );
 
   return (
-    <div className={styles.tag}>
+    <div className={`content ${styles.tag}`}>
       <h2>{id?.toUpperCase()}</h2>
       <div className={styles.posts}>
         {posts && posts.length === 0 && (

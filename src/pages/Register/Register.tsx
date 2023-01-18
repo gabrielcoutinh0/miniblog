@@ -35,7 +35,7 @@ export default function Register() {
   }, [authError]);
 
   return (
-    <div className={styles.register}>
+    <div className={`content ${styles.register}`}>
       <h1>Cadastre-se para postar</h1>
       <p>Crie seu usuário de compartilhe suas histórias</p>
       <form onSubmit={handleSubmit}>
@@ -43,7 +43,7 @@ export default function Register() {
           <span>Nome:</span>
           <input
             type="text"
-            name="displayName"
+            name="name"
             required
             placeholder="Nome do usuário"
             value={displayName}

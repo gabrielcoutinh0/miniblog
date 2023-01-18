@@ -1,13 +1,10 @@
-.home {
-  padding: 12.5px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
+.title {
+  padding-bottom: 12px;
 }
 
-.home h1 {
-  padding: 0 12.5px;
-  margin: 20px 0 0 0;
+.highlightsPosts {
+  display: grid;
+  grid-gap: 20px;
 }
 
 .noposts {
@@ -28,14 +25,22 @@
   gap: 20px;
 }
 
-.lastPosts {
-  padding: 12.5px;
+.col {
   display: grid;
+  grid-template-columns: 1fr;
   grid-gap: 20px;
 }
 
+.aside {
+  height: 60vh;
+}
+
 @media (min-width: 1024px) {
-  .lastPosts {
+  .highlightsPosts {
     grid-template-columns: 1fr 2fr 1fr;
+  }
+
+  .col {
+    grid-template-columns: 69% 29%;
   }
 }

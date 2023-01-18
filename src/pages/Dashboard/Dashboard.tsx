@@ -20,7 +20,7 @@ export default function Dashboard() {
   if (loading) return <p>Carregando...</p>;
 
   return (
-    <div className={styles.dashboard}>
+    <div className={`content ${styles.dashboard}`}>
       <h2>Dashboard</h2>
       <p>Gerencie os seus posts</p>
       {posts && posts.length === 0 ? (

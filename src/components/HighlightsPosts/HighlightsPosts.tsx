@@ -1,15 +1,14 @@
-import styles from "./PostDetail.module.css";
+import styles from "./HighlightsPosts.module.css";
 import noImage from "../../assets/no-image.svg";
-import UserProfile from "../../assets/user-profile.svg";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { timeConverter } from "../../utils/TimeConverter";
 
-export default function PostDetail({ post }: { post: any }) {
+export default function HighlightsPosts({ post }: { post: any }) {
   const [imageError, setImageError] = useState(false);
 
   return (
-    <article className={styles.post}>
+    <div className={styles.highlightsPosts_item}>
       <div className={styles.postImage}>
         <Link to={`/posts/${post.id}`}>
           {imageError ? (
@@ -35,29 +34,16 @@ export default function PostDetail({ post }: { post: any }) {
             )
           )}
         </div>
-        <h2 className={styles.postTitle}>
+        <h3 className={styles.postTitle}>
           <Link to={`/posts/${post.id}`}>{post.title}</Link>
-        </h2>
-        <p className={styles.postSnippet}>{post.resume}</p>
+        </h3>
         <div className={styles.postMeta}>
-          <div className={styles.postAuthAndTimestamp}>
-            <span className={styles.authorImage}>
-              <img src={UserProfile} alt="User Profile" />
-            </span>
-            <span className={styles.postAuthorAndData}>
-              <span className={styles.postAuthor}>{post.createdBy}</span>
-              <span className={styles.postDate}>
-                <span>{timeConverter(post.createdAt.seconds)}</span>
-              </span>
-            </span>
-          </div>
-          <span>
-            <Link to={`/posts/${post.id}`} className="btn btn-outline">
-              Leia mais
-            </Link>
+          <span className={styles.postAuthor}>{post.createdBy}</span>
+          <span className={styles.postDate}>
+            <span>{timeConverter(post.createdAt.seconds)}</span>
           </span>
         </div>
       </div>
-    </article>
+    </div>
   );
 }

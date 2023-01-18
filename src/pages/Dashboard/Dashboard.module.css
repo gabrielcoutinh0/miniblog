@@ -1,5 +1,4 @@
 .dashboard {
-  padding: 25px;
   text-align: center;
   display: flex;
   flex-direction: column;
@@ -36,7 +35,7 @@
   font-weight: bold;
   border-bottom: 2px solid #ccc;
   width: 100%;
-  padding: 12.5px;
+  padding: 12px;
 }
 
 .post_row {
@@ -46,7 +45,7 @@
   align-items: center;
   border-bottom: 1px solid #eee;
   width: 100%;
-  padding: 12.5px;
+  padding: 12px 0;
 }
 
 .post_row p {

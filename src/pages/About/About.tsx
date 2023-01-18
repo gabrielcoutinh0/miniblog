@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 export default function About() {
   return (
-    <div className={styles.about}>
+    <div className={`content ${styles.about}`}>
       <h2>
         Sobre o Mini<strong>Blog</strong>
       </h2>

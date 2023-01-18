@@ -1,3 +1,6 @@
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-nocheck
+
 import { useState, useEffect } from "react";
 import { db } from "../firebase/config";
 import {
@@ -10,7 +13,7 @@ import {
 } from "firebase/firestore";
 
 export const useFetchDocuments = (
-  docColletion,
+  docColletion: string,
   tags: null | string = null,
   search: null | string = null,
   limitedPost: null | boolean = null,

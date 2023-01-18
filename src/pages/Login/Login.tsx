@@ -27,7 +27,7 @@ export default function Login() {
   }, [authError]);
 
   return (
-    <div className={styles.login}>
+    <div className={`content ${styles.login}`}>
       <h1>Entrar</h1>
       <p>Faça o login para utilizar o sistema</p>
       <form onSubmit={handleSubmit}>

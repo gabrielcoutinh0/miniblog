@@ -1,44 +1,15 @@
-.lastPost_item {
-  position: relative;
+.post {
   display: grid;
-  grid-template-columns: 90px 1fr;
+  grid-template-columns: 1fr;
   grid-gap: 15px;
-}
-
-.lastPost_item:nth-child(2) {
-  display: block;
-  overflow: hidden;
+  background-color: #f7f8f9;
   border-radius: 10px;
-  grid-row: 1;
-  min-width: 100%;
-}
-
-.lastPost_item:nth-child(2) .postImage {
-  width: 100%;
-  height: 350px;
-  overflow: hidden;
-  border-radius: 10px;
-}
-
-.lastPost_item:nth-child(2) .tags span {
-  all: unset;
-  color: #fff;
-  border-radius: 4px;
-  background-color: #47276c;
-  margin-right: 10px;
-  padding: 8px;
-  font-size: 0.7em;
-  font-weight: 500;
-  text-transform: uppercase;
-}
-
-.lastPost_item:nth-child(2) .postTitle {
-  font-size: 1.8em;
+  padding: 12px;
 }
 
 .postImage {
-  width: 90px;
-  height: 90px;
+  width: 100%;
+  height: 100%;
   overflow: hidden;
   border-radius: 10px;
 }
@@ -50,78 +21,46 @@
   transition: transform 0.3s ease-out;
 }
 
-.lastPost_item:nth-child(2) .postImage::after {
-  content: "";
-  background: linear-gradient(
-    to bottom,
-    rgba(50, 50, 50, 0) 0,
-    rgba(16, 15, 15, 0.91) 89%,
-    rgba(16, 15, 15, 0.93) 93%
-  );
-  bottom: 0;
-  display: block;
-  opacity: 0.93;
-  position: absolute;
-  top: 40%;
-  transition: 0.2s all ease-in-out;
-  width: 100%;
-  border-radius: 10px;
-}
-
-.lastPost_item:hover > .postImage img {
+.postImage img:hover {
   transform: translateX(-4%);
 }
 
-.lastPost_item:nth-child(2) .postDetails {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  padding: 28px;
-}
-
 .postDetails {
-  position: relative;
-  padding: 0;
+  align-self: center;
 }
 
 .tags {
   display: flex;
 }
 
-.tags span {
-  font-size: 0.7em;
+.tags span a {
+  font-size: 0.85em;
   font-weight: 500;
   text-transform: uppercase;
-  background-color: #f7ab29;
-  color: #fff;
-  padding: 2px 4px;
-  margin-right: 5px;
-  border-radius: 4px;
+  color: #ff0000;
+}
+
+.tags span::before {
+  content: "•";
+  margin: 0 10px;
+}
+
+.tags span:first-child::before {
+  all: unset;
 }
 
 .postTitle {
-  color: #000;
+  font-size: 1.3em;
+  margin: 15px 0;
 }
 
-.postTitle:not(.lastPost_item:nth-child(2) .postTitle) {
+.postSnippet,
+.postTitle {
   overflow: hidden;
   text-overflow: ellipsis;
   display: -webkit-box;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
-  font-size: 1.1em;
-  font-weight: 600;
-  margin: 10px 0;
-}
-
-.lastPost_item:nth-child(2) .postDetails a,
-.tags span a {
-  color: #fff;
-}
-
-.postTitle a {
-  color: #000;
 }
 
 .postMeta {
@@ -129,7 +68,25 @@
   flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
-  color: #999;
+}
+
+.postAuthAndTimestamp {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.authorImage {
+  width: 38px;
+  height: 38px;
+  border-radius: 100px;
+  margin: 0 10px 0 0;
+}
+
+.postAuthorAndData {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
 }
 
 .noImage {
@@ -138,55 +95,35 @@
 }
 
 @media (min-width: 1024px) {
-  .lastPost_item {
-    display: block;
-  }
-
-  .lastPost_item:nth-child(2) {
-    grid-row: span 2;
-  }
-
-  .lastPost_item:nth-child(2) .postImage {
-    height: 540px;
+  .post {
+    grid-template-columns: 240px 1fr;
   }
 
   .postImage {
-    width: 100%;
-    height: 260px;
+    width: 220px;
+    height: 200px;
   }
 
-  .postImage::after {
-    content: "";
-    background: linear-gradient(
-      to bottom,
-      rgba(50, 50, 50, 0) 0,
-      rgba(16, 15, 15, 0.91) 89%,
-      rgba(16, 15, 15, 0.93) 93%
-    );
-    bottom: 0;
-    display: block;
-    opacity: 0.93;
-    position: absolute;
-    top: 40%;
-    transition: 0.2s all ease-in-out;
-    width: 100%;
-    border-radius: 10px;
-  }
-
-  .postDetails {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    padding: 28px;
-  }
-
-  .postTitle:not(.lastPost_item:nth-child(2) .postTitle) {
-    -webkit-line-clamp: initial;
-  }
-
-  .postTitle,
   .postTitle a {
-    color: #fff;
+    color: #47276c;
+    text-decoration: none;
+    display: inline;
+    background-image: linear-gradient(
+      to bottom,
+      transparent 20%,
+      currentColor 21%
+    );
+
+    background-position: 0 20px;
+    background-repeat: no-repeat;
+    background-size: 0% 2px;
+
+    transition: background-size 0.5s ease-in-out 0.2s;
+  }
+
+  .postTitle a:hover,
+  .postTitle a:focus {
+    background-size: 100% 2px;
+    transition-delay: 0s;
   }
 }

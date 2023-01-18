@@ -17,7 +17,7 @@ export default function Post() {
   const [imageError, setImageError] = useState(false);
 
   return (
-    <div className={styles.Post}>
+    <div className="content">
       {loading && <p>Carregando post...</p>}
       {post && (
         <main className={styles.layoutPost}>
@@ -36,14 +36,13 @@ export default function Post() {
               </span>
             </div>
             <div className={styles.tags}>
-              {post.tags.map((tag: string) =>
-                tag.includes("destaque") ? (
-                  ""
-                ) : (
-                  <span key={tag}>
-                    <Link to={`/tag/${tag}`}>#{tag}</Link>
-                  </span>
-                )
+              {post.tags.map(
+                (tag: string) =>
+                  !tag.includes("destaque") && (
+                    <span key={tag}>
+                      <Link to={`/tag/${tag}`}>#{tag}</Link>
+                    </span>
+                  )
               )}
             </div>
           </div>

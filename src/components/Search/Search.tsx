@@ -2,7 +2,7 @@ import styles from "./Search.module.css";
 import { useFetchDocuments } from "../../hooks/useFetchDocuments";
 import { useQuery } from "../../hooks/useQuery";
 import { Link } from "react-router-dom";
-import PostDetail from "../PostDetail/PostDetail";
+import PostDetail from "../LastPosts/LastPosts";
 
 import firebase from "firebase/firestore";
 import { useEffect } from "react";
@@ -18,7 +18,7 @@ export default function Search() {
   );
 
   return (
-    <div className={styles.search}>
+    <div className={`content ${styles.search}`}>
       <h2>Resultado da busca para: {search?.toUpperCase()}</h2>
       <div className={styles.posts}>
         {posts && posts.length === 0 && (

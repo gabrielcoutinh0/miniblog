@@ -1,7 +1,3 @@
-.footer {
-  padding: 0 15px;
-}
-
 .footer_inner {
   margin: 0 auto;
   max-width: 1050px;
@@ -28,7 +24,7 @@
 
 .widget {
   overflow: hidden;
-  padding: 12.5px;
+  padding: 12px;
   position: relative;
 
   display: grid;

@@ -6,7 +6,7 @@ import searchIcon from "../../assets/search.svg";
 import { NavLink, useNavigate } from "react-router-dom";
 import { useAuthentication } from "../../hooks/useAuthentication";
 import { useAuthValue } from "../../context/AuthContext";
-import { useState } from "react";
+import { useState, useRef } from "react";
 
 export default function Navbar() {
   const { user } = useAuthValue();
@@ -16,6 +16,8 @@ export default function Navbar() {
   const [active, setActive] = useState(false);
   const navigate = useNavigate();
 
+  const ref = useRef(null);
+
   const handleSubmit = (e: React.FormEvent<EventTarget>) => {
     e.preventDefault();
     setQuery("");
@@ -24,6 +26,11 @@ export default function Navbar() {
     if (queryLowcase) {
       return navigate(`/search?q=${queryLowcase}`);
     }
+  };
+
+  const handleSearch = () => {
+    ref.current.focus();
+    setActive(!active);
   };
 
   return (
@@ -45,8 +52,9 @@ export default function Navbar() {
           onChange={(e) => setQuery(e.target.value)}
           value={query}
           onBlur={() => setActive(!active)}
+          ref={ref}
         />
-        <span onClick={() => setActive(!active)} className={styles.btn_search}>
+        <span onClick={handleSearch} className={styles.btn_search}>
           <img src={searchIcon} alt="Buscar" />
         </span>
       </form>

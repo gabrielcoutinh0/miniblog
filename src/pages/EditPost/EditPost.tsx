@@ -139,7 +139,7 @@ export default function EditPost() {
   };
 
   return (
-    <div className={styles.edit_post}>
+    <div className={`content ${styles.edit_post}`}>
       {post && (
         <>
           <h2>Editando post: {post.title}</h2>

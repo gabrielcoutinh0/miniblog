@@ -3,10 +3,10 @@
   flex-wrap: wrap;
   justify-content: space-between;
   align-items: center;
-  gap: 25px;
   border-radius: 5px;
   background-color: #fff;
-  padding: 25px;
+  padding: 12px;
+  gap: 24px;
 }
 
 .logo {
@@ -33,24 +33,10 @@ strong {
   border-bottom: 2px solid #47276c;
 }
 
-/* .search_form {
-  max-width: 100%;
-  width: 60%;
-  display: flex;
-  justify-content: center;
-  margin-bottom: 2em;
-}
-
-.search_form input {
-  margin-right: 10px;
-  width: 50%;
-} */
-
 .search {
   all: unset;
   position: relative;
   height: 40px;
-  margin-left: auto;
 }
 
 .input_search {
@@ -100,6 +86,7 @@ strong {
 @media (min-width: 1024px) {
   .navbar {
     flex-wrap: nowrap;
+    padding: 24px;
   }
 
   .input_search.active {
