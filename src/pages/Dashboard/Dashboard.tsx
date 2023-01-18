@@ -7,6 +7,7 @@ import { useAuthValue } from "../../context/AuthContext";
 import { useFetchDocuments } from "../../hooks/useFetchDocuments";
 import firebase from "firebase/firestore";
 import { useDeleteDocument } from "../../hooks/useDeleteDocument";
+import Loading from "../../components/Loading/Loading";
 
 export default function Dashboard() {
   const { user } = useAuthValue();
@@ -17,7 +18,7 @@ export default function Dashboard() {
 
   const { deleteDocument } = useDeleteDocument("posts");
 
-  if (loading) return <p>Carregando...</p>;
+  if (loading) return <Loading />;
 
   return (
     <div className={`content ${styles.dashboard}`}>

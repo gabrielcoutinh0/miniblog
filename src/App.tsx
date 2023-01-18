@@ -24,6 +24,7 @@ import Search from "./components/Search/Search";
 import Tag from "./components/Tag/Tag";
 import Post from "./pages/Post/Post";
 import EditPost from "./pages/EditPost/EditPost";
+import Loading from "./components/Loading/Loading";
 
 function App() {
   const [user, setUser] = useState<undefined | null | User>(undefined);
@@ -35,7 +36,7 @@ function App() {
     onAuthStateChanged(auth, (user) => setUser(user));
   }, [auth]);
 
-  if (loadingUser) return <p className="loading">Carregando...</p>;
+  if (loadingUser) return <Loading />;
 
   return (
     <div className="App">

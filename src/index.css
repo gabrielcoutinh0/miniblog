@@ -150,10 +150,6 @@ button[disabled]:hover {
   border-radius: 5px;
 }
 
-.loading {
-  text-align: center;
-}
-
 .content {
   padding: 12px;
   background-color: #fff;

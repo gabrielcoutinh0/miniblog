@@ -6,6 +6,7 @@ import LastPosts from "../../components/LastPosts/LastPosts";
 import HighlightsPosts from "../../components/HighlightsPosts/HighlightsPosts";
 
 import firebase from "firebase/firestore";
+import Loading from "../../components/Loading/Loading";
 
 export default function Home() {
   const { documents: lastPosts, loading }: firebase.DocumentData =
@@ -17,7 +18,7 @@ export default function Home() {
     <>
       <div className="content">
         <h1 className={styles.title}>Destaques</h1>
-        {loading && <p>Carregando...</p>}
+        {loading && <Loading />}
         <div className={styles.highlightsPosts}>
           {highlightsPosts &&
             highlightsPosts.map((post: firebase.DocumentData, key: string) => (
@@ -38,7 +39,7 @@ export default function Home() {
         <main className={`content ${styles.lastPosts}`}>
           {lastPosts && <h1 className={styles.title}>Últimos Posts</h1>}
           <div className={styles.posts}>
-            {loading && <p>Carregando...</p>}
+            {loading && <Loading />}
             {lastPosts &&
               lastPosts.map((post: firebase.DocumentData, key: string) => (
                 <LastPosts key={key} post={post} />
