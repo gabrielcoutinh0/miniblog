@@ -18,6 +18,7 @@ import { ProductProps } from "../../services/types";
 
 export default function Home() {
   const [next, setNext] = useState(1);
+  const [offerMax, setOfferMax] = useState(6);
 
   const { documents: lastPosts, loading }: firebase.DocumentData =
     useFetchDocuments("posts");
@@ -28,7 +29,11 @@ export default function Home() {
 
   const { data: products, loading: loadingProduts } = useFetch(url);
 
-  console.log(products);
+  const handleMoreOffer = () => {
+    setOfferMax((prevState) => prevState + 3);
+
+    if (offerMax % 12 === 0) setNext(next + 1);
+  };
 
   return (
     <>
@@ -69,38 +74,45 @@ export default function Home() {
           ) : (
             <div className={styles.offers}>
               {products &&
-                products.map(
-                  ({
-                    id,
-                    loja,
-                    produto,
-                    preco,
-                    link,
-                    imagem,
-                    obs,
-                    categoria,
-                  }: ProductProps) => (
-                    <Product
-                      key={id}
-                      id={id}
-                      loja={loja}
-                      produto={produto}
-                      preco={preco}
-                      link={link}
-                      imagem={imagem}
-                      obs={obs}
-                      categoria={categoria.toUpperCase()}
-                    />
-                  )
-                )}
-              {next < products?.length && (
-                <button
-                  className={styles.moreOffer}
-                  onClick={() => setNext(next + 1)}
-                >
-                  Mais Ofertas
-                </button>
-              )}
+                products
+                  .slice(0, offerMax)
+                  .map(
+                    ({
+                      id,
+                      loja,
+                      produto,
+                      preco,
+                      link,
+                      imagem,
+                      obs,
+                      categoria,
+                    }: ProductProps) => (
+                      <Product
+                        key={id}
+                        id={id}
+                        loja={loja}
+                        produto={produto}
+                        preco={preco}
+                        link={link}
+                        imagem={imagem}
+                        obs={obs}
+                        categoria={categoria.toUpperCase()}
+                      />
+                    )
+                  )}
+              {next < products?.length &&
+                (loadingProduts ? (
+                  <button className={styles.moreOffer} disabled>
+                    Carregando...
+                  </button>
+                ) : (
+                  <button
+                    className={styles.moreOffer}
+                    onClick={handleMoreOffer}
+                  >
+                    Mais Ofertas
+                  </button>
+                ))}
             </div>
           )}
         </aside>

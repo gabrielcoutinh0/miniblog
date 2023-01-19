@@ -1,7 +1,9 @@
 .backToTop {
+  all: unset;
   position: fixed;
   right: 14px;
   bottom: 14px;
+  text-align: center;
   z-index: 10;
   border-radius: 50%;
   height: 50px;

@@ -38,7 +38,8 @@ export default function Post() {
             <div className={styles.tags}>
               {post.tags.map(
                 (tag: string) =>
-                  !tag.includes("destaque") && (
+                  !tag.includes("destaque") &&
+                  !tag.includes("popular") && (
                     <span key={tag}>
                       <Link to={`/tag/${tag}`}>#{tag}</Link>
                     </span>

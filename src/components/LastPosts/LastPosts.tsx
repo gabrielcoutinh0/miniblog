@@ -26,14 +26,14 @@ export default function LastPosts({ post }: DocumentData) {
       </div>
       <div className={styles.postDetails}>
         <div className={styles.tags}>
-          {post.tags.map((tag: string) =>
-            tag.includes("destaque") ? (
-              ""
-            ) : (
-              <span key={tag}>
-                <Link to={`/tag/${tag}`}>{tag}</Link>
-              </span>
-            )
+          {post.tags.map(
+            (tag: string) =>
+              !tag.includes("destaque") &&
+              !tag.includes("popular") && (
+                <span key={tag}>
+                  <Link to={`/tag/${tag}`}>{tag}</Link>
+                </span>
+              )
           )}
         </div>
         <h2 className={styles.postTitle}>
