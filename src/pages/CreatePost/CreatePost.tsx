@@ -28,12 +28,10 @@ export default function CreatePost() {
   const handdleAddTag = (tag) => {
     const trimmedInput = tag.trim().toLowerCase();
 
-    if (!tags.includes(trimmedInput)) {
-      setTags((prevState) => [...prevState, trimmedInput]);
+    if (tags.includes(trimmedInput) || inputTag === "") {
       setInputTag("");
-    }
-
-    if (tags.includes(trimmedInput)) {
+    } else {
+      setTags((prevState) => [...prevState, trimmedInput]);
       setInputTag("");
     }
   };
