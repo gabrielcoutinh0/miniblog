@@ -3,6 +3,8 @@
 
 import styles from "./Home.module.css";
 
+import { useState } from "react";
+
 import { Link } from "react-router-dom";
 import { useFetchDocuments } from "../../hooks/useFetchDocuments";
 import LastPosts from "../../components/LastPosts/LastPosts";
@@ -15,15 +17,18 @@ import Product from "../../components/Product/Product";
 import { ProductProps } from "../../services/types";
 
 export default function Home() {
+  const [next, setNext] = useState(1);
+
   const { documents: lastPosts, loading }: firebase.DocumentData =
     useFetchDocuments("posts");
   const { documents: highlightsPosts }: firebase.DocumentData =
     useFetchDocuments("posts", "destaque", null, true, 5);
 
-  const url =
-    "https://pudim2.economizzando.com.br/conteudo/api/vitrine/desconto-em-games/?page=1";
+  const url = `https://pudim2.economizzando.com.br/conteudo/api/vitrine/desconto-em-games/?page=${next}`;
 
   const { data: products, loading: loadingProduts } = useFetch(url);
+
+  console.log(products);
 
   return (
     <>
@@ -64,7 +69,7 @@ export default function Home() {
           ) : (
             <div className={styles.offers}>
               {products &&
-                products.posts.map(
+                products.map(
                   ({
                     id,
                     loja,
@@ -88,6 +93,14 @@ export default function Home() {
                     />
                   )
                 )}
+              {next < products?.length && (
+                <button
+                  className={styles.moreOffer}
+                  onClick={() => setNext(next + 1)}
+                >
+                  Mais Ofertas
+                </button>
+              )}
             </div>
           )}
         </aside>

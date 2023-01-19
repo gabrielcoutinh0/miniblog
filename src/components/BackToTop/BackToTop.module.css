@@ -1,0 +1,21 @@
+.backToTop {
+  position: fixed;
+  right: 14px;
+  bottom: 14px;
+  z-index: 10;
+  border-radius: 50%;
+  height: 50px;
+  width: 50px;
+  transition: opacity 0.3s ease-in;
+  background-color: #47276c;
+  color: white;
+  cursor: pointer;
+}
+
+.opacityNone {
+  opacity: 0;
+}
+
+.opacityFull {
+  opacity: 1;
+}

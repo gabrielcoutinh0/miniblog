@@ -25,6 +25,7 @@ import Tag from "./components/Tag/Tag";
 import Post from "./pages/Post/Post";
 import EditPost from "./pages/EditPost/EditPost";
 import Loading from "./components/Loading/Loading";
+import BackToTop from "./components/BackToTop/BackToTop";
 
 function App() {
   const [user, setUser] = useState<undefined | null | User>(undefined);
@@ -77,6 +78,7 @@ function App() {
           <Footer />
         </BrowserRouter>
       </AuthProvider>
+      <BackToTop />
     </div>
   );
 }
