@@ -117,6 +117,10 @@ ul {
   color: #47276c;
 }
 
+.titleFooter {
+  color: #47276c;
+}
+
 @media (min-width: 1024px) {
   .footer_colums {
     grid-template-columns: 1fr 1fr 1fr;

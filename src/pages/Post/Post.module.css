@@ -58,3 +58,21 @@
 .layoutPost img {
   max-width: 100%;
 }
+
+.postBody a {
+  color: #f7ab29;
+  font-weight: bold;
+}
+
+.postBody h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: #fcb900;
+}
+
+.postBody li::marker {
+  color: #fcb900;
+}

@@ -81,7 +81,9 @@ export default function Footer() {
         </div>
         <div className={` ${styles.section} ${styles.center}`}>
           <div>
-            <h3>Escreva sobre o que você tem interesse!</h3>
+            <h3 className={styles.titleFooter}>
+              Escreva sobre o que você tem interesse!
+            </h3>
             <p>MiniBlog &copy; {currentYear}</p>
           </div>
         </div>

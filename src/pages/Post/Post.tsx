@@ -56,7 +56,10 @@ export default function Post() {
               onError={() => setImageError(true)}
             />
           )}
-          <div dangerouslySetInnerHTML={{ __html: post.body }} />
+          <div
+            className={styles.postBody}
+            dangerouslySetInnerHTML={{ __html: post.body }}
+          />
         </main>
       )}
     </div>
