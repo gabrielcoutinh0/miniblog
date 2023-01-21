@@ -12,6 +12,7 @@ Este projeto foi desenvolvido utilizando:
 
 - [ReactJS](https://reactjs.org/)
 - [Typescript](https://www.typescriptlang.org/)
+- [Jodit](https://github.com/xdan/jodit)
 - [Firebase](https://firebase.google.com/)
 
 ## 📌 Começando

@@ -7,11 +7,11 @@ import { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 
 import { useAuthValue } from "../../context/AuthContext";
-import { useInsertDocument } from "../../hooks/useInsertDocument";
 import { useFetchDocument } from "../../hooks/useFetchDocument";
 import { useUpdateDocument } from "../../hooks/useUpdateDocument";
 
 import firebase from "firebase/firestore";
+import JoditEditor from "jodit-react";
 
 export default function EditPost() {
   const { id } = useParams();
@@ -178,13 +178,18 @@ export default function EditPost() {
             />
             <label>
               <span>Conteúdo:</span>
-              <textarea
+              <JoditEditor
+                className={styles.editor}
+                value={body}
+                onChange={setBody}
+              />
+              {/* <textarea
                 name="body"
                 required
                 placeholder="Conteúdo do post..."
                 onChange={(e) => setBody(e.target.value)}
                 value={body}
-              />
+              /> */}
             </label>
             <label>
               <span>Tags:</span>

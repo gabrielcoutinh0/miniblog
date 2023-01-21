@@ -9,6 +9,8 @@ import { useNavigate } from "react-router-dom";
 import { useAuthValue } from "../../context/AuthContext";
 import { useInsertDocument } from "../../hooks/useInsertDocument";
 
+import JoditEditor from "jodit-react";
+
 export default function CreatePost() {
   const [keywords, setKeywords] = useState([]);
   const [title, setTitle] = useState("");
@@ -25,7 +27,7 @@ export default function CreatePost() {
 
   const navigate = useNavigate();
 
-  const handdleAddTag = (tag) => {
+  const handdleAddTag = (tag: string) => {
     const trimmedInput = tag.trim().toLowerCase();
 
     if (tags.includes(trimmedInput) || inputTag === "") {
@@ -64,7 +66,7 @@ export default function CreatePost() {
     setTags((prevState) => prevState.filter((tag, i) => i !== index));
   };
 
-  const createKeywords = (title) => {
+  const createKeywords = (title: string) => {
     const curTitle = title.split(" ");
     const arrTitle = [];
     for (let i = 0; i < curTitle.length; i++) {
@@ -111,6 +113,8 @@ export default function CreatePost() {
     navigate("/");
   };
 
+  console.log(body);
+
   return (
     <div className={`content ${styles.create_post}`}>
       <h2>Criar post</h2>
@@ -151,13 +155,18 @@ export default function CreatePost() {
         </label>
         <label>
           <span>Conteúdo:</span>
-          <textarea
+          <JoditEditor
+            className={styles.editor}
+            value={body}
+            onChange={setBody}
+          />
+          {/* <textarea
             name="body"
             required
             placeholder="Conteúdo do post..."
             onChange={(e) => setBody(e.target.value)}
             value={body}
-          />
+          /> */}
         </label>
         <label>
           <span>Tags:</span>

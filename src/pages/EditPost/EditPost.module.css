@@ -74,3 +74,10 @@ textarea {
   margin: 0;
   border-radius: 10px !important;
 }
+
+.editor {
+  text-align: left;
+  color: #000;
+  margin: 0;
+  padding: 0;
+}
