@@ -76,3 +76,14 @@ h6 {
 .postBody li::marker {
   color: #fcb900;
 }
+
+.postBody p,
+li {
+  font-weight: 500;
+  font-size: 1.1em;
+}
+
+.postBody strong {
+  font-size: 1.15em;
+  font-weight: bold;
+}
