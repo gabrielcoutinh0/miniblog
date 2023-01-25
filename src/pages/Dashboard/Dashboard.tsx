@@ -1,6 +1,3 @@
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-// @ts-nocheck
-
 import styles from "./Dashboard.module.css";
 import { Link } from "react-router-dom";
 import { useAuthValue } from "../../context/AuthContext";

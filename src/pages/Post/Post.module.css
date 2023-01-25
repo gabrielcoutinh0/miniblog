@@ -64,12 +64,12 @@
   font-weight: bold;
 }
 
-.postBody h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
+.postBody > h1,
+.postBody > h2,
+.postBody > h3,
+.postBody > h4,
+.postBody > h5,
+.postBody > h6 {
   color: #fcb900;
 }
 

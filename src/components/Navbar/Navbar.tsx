@@ -1,6 +1,3 @@
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-// @ts-nocheck
-
 import styles from "./Navbar.module.css";
 import searchIcon from "../../assets/search.svg";
 import { NavLink, useNavigate } from "react-router-dom";
@@ -16,7 +13,8 @@ export default function Navbar() {
   const [active, setActive] = useState(false);
   const navigate = useNavigate();
 
-  const ref = useRef(null);
+  const ref = useRef<HTMLInputElement>(null);
+  console.log(ref);
 
   const handleSubmit = (e: React.FormEvent<EventTarget>) => {
     e.preventDefault();
@@ -29,7 +27,8 @@ export default function Navbar() {
   };
 
   const handleSearch = () => {
-    ref.current.focus();
+    if (ref.current !== null) ref.current.focus();
+
     setActive(!active);
   };
 

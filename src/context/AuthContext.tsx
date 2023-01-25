@@ -1,14 +1,14 @@
 import { useContext, createContext } from "react";
 import { User } from "@firebase/auth";
 
-const AuthContext = createContext<null | User>(null);
+const AuthContext = createContext<null | any>(null);
 
 export function AuthProvider({
   children,
   value,
 }: {
   children: JSX.Element;
-  value: User;
+  value: any;
 }) {
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 }

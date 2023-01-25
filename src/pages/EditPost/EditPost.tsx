@@ -30,7 +30,7 @@ export default function EditPost() {
   const [formError, setFormError] = useState("");
   const [isKeyReleased, setIsKeyReleased] = useState(false);
 
-  const handdleAddTag = (tag) => {
+  const handdleAddTag = (tag: string) => {
     const trimmedInput = tag.trim().toLowerCase();
 
     if (tags.includes(trimmedInput) || inputTag === "") {
@@ -69,7 +69,7 @@ export default function EditPost() {
     setTags((prevState) => prevState.filter((tag, i) => i !== index));
   };
 
-  const createKeywords = (title) => {
+  const createKeywords = (title: string) => {
     const curTitle = title.split(" ");
     const arrTitle = [];
     for (let i = 0; i < curTitle.length; i++) {
