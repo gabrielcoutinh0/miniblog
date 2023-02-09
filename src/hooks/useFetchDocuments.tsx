@@ -14,7 +14,7 @@ export const useFetchDocuments = (
   tags: null | string = null,
   search: null | string = null,
   limitedPost: null | boolean = null,
-  qtyPosts: number,
+  qtyPosts: null | number = null,
   uid = null
 ) => {
   const [documents, setDocuments] = useState<firebase.DocumentData | null>(
@@ -35,7 +35,7 @@ export const useFetchDocuments = (
             collectionRef,
             where("tags", "array-contains", tags),
             orderBy("createdAt", "desc"),
-            limit(qtyPosts)
+            limit(qtyPosts!)
           );
         else if (tags)
           q = await query(
@@ -53,7 +53,7 @@ export const useFetchDocuments = (
           q = await query(
             collectionRef,
             orderBy("createdAt", "desc"),
-            limit(qtyPosts)
+            limit(qtyPosts!)
           );
         else if (uid)
           q = await query(

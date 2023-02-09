@@ -11,7 +11,7 @@ export default function Post() {
   const { id } = useParams();
   const { document: post, loading }: firebase.DocumentData = useFetchDocument(
     "posts",
-    id
+    id!
   );
 
   const [imageError, setImageError] = useState(false);
