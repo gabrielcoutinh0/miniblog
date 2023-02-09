@@ -113,8 +113,6 @@ export default function CreatePost() {
     navigate("/");
   };
 
-  console.log(body);
-
   return (
     <div className={`content ${styles.create_post}`}>
       <h2>Criar post</h2>

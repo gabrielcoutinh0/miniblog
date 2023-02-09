@@ -14,7 +14,6 @@ export default function Navbar() {
   const navigate = useNavigate();
 
   const ref = useRef<HTMLInputElement>(null);
-  console.log(ref);
 
   const handleSubmit = (e: React.FormEvent<EventTarget>) => {
     e.preventDefault();

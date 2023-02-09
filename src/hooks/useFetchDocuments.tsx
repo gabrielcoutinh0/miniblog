@@ -1,9 +1,6 @@
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-// @ts-nocheck
-
 import { useState, useEffect } from "react";
 import { db } from "../firebase/config";
-import {
+import firebase, {
   collection,
   query,
   orderBy,
@@ -17,10 +14,12 @@ export const useFetchDocuments = (
   tags: null | string = null,
   search: null | string = null,
   limitedPost: null | boolean = null,
-  qtyPosts: null | number = null,
+  qtyPosts: number,
   uid = null
 ) => {
-  const [documents, setDocuments] = useState(null);
+  const [documents, setDocuments] = useState<firebase.DocumentData | null>(
+    null
+  );
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState<boolean | null>(null);
 

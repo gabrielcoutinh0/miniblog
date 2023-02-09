@@ -1,8 +1,5 @@
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-// @ts-nocheck
-
 import { useState, useEffect, useReducer } from "react";
-import { collection, addDoc, Timestamp } from "firebase/firestore";
+import firebase, { collection, addDoc, Timestamp } from "firebase/firestore";
 import { db } from "../firebase/config";
 
 const initialState = {
@@ -10,7 +7,10 @@ const initialState = {
   error: null,
 };
 
-const insertReducer = (state, action) => {
+const insertReducer = (
+  state: firebase.DocumentData,
+  action: { type: string; payload: firebase.DocumentData }
+) => {
   switch (action.type) {
     case "LOADING":
       return { loading: true, error: null };
@@ -23,16 +23,16 @@ const insertReducer = (state, action) => {
   }
 };
 
-export const useInsertDocument = (docCollection) => {
+export const useInsertDocument = (docCollection: string) => {
   const [response, dispatch] = useReducer(insertReducer, initialState);
 
   const [cancelled, setCancelled] = useState(false);
 
-  const checkCancelBeforeDispatch = (action) => {
+  const checkCancelBeforeDispatch = (action: any) => {
     if (!cancelled) dispatch(action);
   };
 
-  const insertDocument = async (document) => {
+  const insertDocument = async (document: firebase.DocumentData) => {
     checkCancelBeforeDispatch({ type: "LOADING" });
 
     try {

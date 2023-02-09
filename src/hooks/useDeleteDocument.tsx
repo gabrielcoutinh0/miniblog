@@ -1,8 +1,5 @@
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-// @ts-nocheck
-
 import { useState, useEffect, useReducer } from "react";
-import { doc, deleteDoc } from "firebase/firestore";
+import firebase, { doc, deleteDoc } from "firebase/firestore";
 import { db } from "../firebase/config";
 
 const initialState = {
@@ -10,7 +7,10 @@ const initialState = {
   error: null,
 };
 
-const deleteReducer = (state, action) => {
+const deleteReducer = (
+  state: firebase.DocumentData,
+  action: { type: string; payload: firebase.DocumentData }
+) => {
   switch (action.type) {
     case "LOADING":
       return { loading: true, error: null };
@@ -23,19 +23,19 @@ const deleteReducer = (state, action) => {
   }
 };
 
-export const useDeleteDocument = (docCollection) => {
+export const useDeleteDocument = (docCollection: string) => {
   const [response, dispatch] = useReducer(deleteReducer, initialState);
 
   // deal with memory leak
   const [cancelled, setCancelled] = useState(false);
 
-  const checkCancelBeforeDispatch = (action) => {
+  const checkCancelBeforeDispatch = (action: any) => {
     if (!cancelled) {
       dispatch(action);
     }
   };
 
-  const deleteDocument = async (id) => {
+  const deleteDocument = async (id: string) => {
     checkCancelBeforeDispatch({ type: "LOADING" });
 
     try {
@@ -45,7 +45,7 @@ export const useDeleteDocument = (docCollection) => {
         type: "DELETED_DOC",
         payload: deletedDocument,
       });
-    } catch (error) {
+    } catch (error: any) {
       checkCancelBeforeDispatch({ type: "ERROR", payload: error.message });
     }
   };
